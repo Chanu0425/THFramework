@@ -12,6 +12,7 @@ Enemy::Enemy()
 	SetTexture(L"collisionbox.png"); // 텍스쳐 설정
 	// 만약에 텍스쳐 설정하고 이후에 레이어 설정할 일이 있다?
 	// 하면 그냥 Renderer 속 Sort 호출만 하면 된다!
+	color.a = 0;
 	objecttexture->layer = 3;
 	Renderer::GetInstance()->Sort();
 	objecttexture->scale = { 3,3 };
@@ -48,6 +49,7 @@ void Enemy::Enemy2Move()
 void Enemy::Enemy2Attack()
 {
 	//
+	
 }
 
 void Enemy::Move()

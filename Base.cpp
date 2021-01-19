@@ -1,6 +1,7 @@
 #include "DXUT.h"
 #include "Bullet.h"
 #include "Effect.h"
+#include "EnemyManager.h"
 #include "Base.h"
 
 Base::Base()
@@ -40,8 +41,48 @@ void Base::CheckCollision()
 
 				// 만약에 충돌이 되었다?
 				EffectManager::GetInstance()->SpawnEffect(BulletManager::GetInstance()->bullets[i]->position); // bullet[i]번째의 포지션으로 해도 됨!
-				GetDamage(1);
-				BulletManager::GetInstance()->bullets[i]->GetDamage(1);
+				
+				
+				if (isPlayer)
+				{
+					if (invincibletime < 0)
+					{
+						GetDamage(BulletManager::GetInstance()->bullets[i]->damage);
+						invincibletime = 1.f;
+					}
+				}
+				else
+					GetDamage(BulletManager::GetInstance()->bullets[i]->damage);
+				BulletManager::GetInstance()->bullets[i]->GetDamage(damage);
+			}
+		}
+	}
+
+	for (int i = 0; i < EnemyManager::GetInstance()->enemys.size(); ++i)
+	{
+		if (EnemyManager::GetInstance()->enemys[i]->isactive == true) // 요놈이 살아있을때
+		{
+			if (type == ENEMY && EnemyManager::GetInstance()->enemys[i]->type == ENEMY)
+				continue;
+			RECT r;
+			if (IntersectRect(&r, &GetRect(), &EnemyManager::GetInstance()->enemys[i]->GetRect()))
+			{
+				// 사운드
+
+				// 만약에 충돌이 되었다?
+				EffectManager::GetInstance()->SpawnEffect(
+					EnemyManager::GetInstance()->enemys[i]->position); // bullet[i]번째의 포지션으로 해도 됨!
+				if (isPlayer)
+				{
+					if (invincibletime < 0)
+					{
+						GetDamage(EnemyManager::GetInstance()->enemys[i]->damage);
+						invincibletime = 1.f;
+					}
+				}
+				else
+					GetDamage(EnemyManager::GetInstance()->enemys[i]->damage);
+				EnemyManager::GetInstance()->enemys[i]->GetDamage(damage);
 			}
 		}
 	}
@@ -53,12 +94,19 @@ void Base::Update()
 	Move();
 	objecttexture->position = position;
 	
+	if (isPlayer == true)
+	{
+		invincibletime -= DELTATIME;
+	}
+
+
 	if (HP <= 0)
 	{
 		if (type == ENEMY)
 		{
 			Director::GetInstance()->Score += 100;
 		}
+		Activefalse();
 		isactive = false;
 		position = { 9999,9999 };
 		objecttexture->isactive = false;

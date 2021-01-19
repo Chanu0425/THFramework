@@ -51,9 +51,6 @@
     <Filter Include="Client\Scene">
       <UniqueIdentifier>{b3c38a7a-54ef-4149-869d-da08e9ad2bfa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Client\Scene\testScene">
-      <UniqueIdentifier>{3280eb30-f1f7-48ec-9bfb-76f4b4778d47}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Client\Player">
       <UniqueIdentifier>{9d9372e3-140a-494f-9f6c-c6cf3339dadd}</UniqueIdentifier>
     </Filter>
@@ -83,6 +80,9 @@
     </Filter>
     <Filter Include="Client\Scene\rankScene">
       <UniqueIdentifier>{824bb1b3-87da-4f57-b592-df2eb814ae2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scene\gameScene">
+      <UniqueIdentifier>{3280eb30-f1f7-48ec-9bfb-76f4b4778d47}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
     </ClCompile>
     <ClCompile Include="EmptyProject.cpp" />
     <ClCompile Include="testScene.cpp">
-      <Filter>Client\Scene\testScene</Filter>
+      <Filter>Client\Scene\gameScene</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Core\Camera</Filter>
@@ -236,7 +236,7 @@
       <Filter>Core\Texture</Filter>
     </ClInclude>
     <ClInclude Include="testScene.h">
-      <Filter>Client\Scene\testScene</Filter>
+      <Filter>Client\Scene\gameScene</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Core\Camera</Filter>

@@ -8,6 +8,8 @@ public:
 	// 패턴들
 	// 1. 총쏘기
 	// 2. 몬스터 소환
+	Sprite* hpbar = nullptr;
+
 	Boss();
 	virtual ~Boss();
 	float movementtime = 0;
@@ -17,6 +19,8 @@ public:
 
 	void ShootBullet();
 	void SpawnMonster();
+
+	void Activefalse() override;
 
 	void Move() override;
 	void Update() override;

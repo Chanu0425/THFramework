@@ -14,7 +14,7 @@ public:
     Sprite();
     virtual ~Sprite();
 
-    Texture* texture; // 스프라이트의 텍스쳐
+    Texture* texture = nullptr; // 스프라이트의 텍스쳐
 
     void SetTexture(wstring path);
 

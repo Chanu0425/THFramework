@@ -5,6 +5,7 @@ class Player :
     public Base
 {
 public:
+    bool isinvincible = false;
     Player();
     virtual ~Player();
 

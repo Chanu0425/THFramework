@@ -9,7 +9,9 @@ Player::Player()
 	
 	objecttexture->SetTexture(L"player1.png");
 	layer = 31;
+	color.a = 0;
 	SetTexture(L"collisionbox.png");
+	isPlayer = true;
 	type = PLAYER;
 }
 
@@ -56,8 +58,12 @@ void Player::Clip()
 
 void Player::Update()
 {
-	if (DXUTWasKeyPressed('M'))
-		HP--;
+	if (DXUTWasKeyPressed(VK_F2))
+		isinvincible = !isinvincible;
+
+	if (isinvincible)
+		HP = 5;
+
 	ShootBullet();
 	Base::Update();
 	Clip();

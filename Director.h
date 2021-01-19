@@ -7,7 +7,12 @@ class Director : // 총 관리자. 씬의 이동 변경을 담당합니다.
 private:
 	Scene* currentScene; // 현재 다이렉트x에서 돌아가는 씬
 public:
-	int Score = 110;
+	
+	// 1. 플레이어 무적
+	// 2. 보스 바로 죽이기
+	// 3. 스코어 올리기
+
+	int Score = 0;
 	int mouse = 0;
 	bool OnMouseDown()
 	{

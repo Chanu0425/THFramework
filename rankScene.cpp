@@ -13,24 +13,24 @@ void rankScene::Init()
 	{
 		fonts[i] = new Font();
 		fonts[i]->Createfont(2, 1, L"BroadwayEngraved BT");
-		fonts[i]->SetFont("test");
+		fonts[i]->SetFont("");
 		fonts[i]->position = { 800, 100 + ((float)i * 100) };
 	}
 
 	nameFont = new Font();
 	nameFont->Createfont(2, 1, L"BroadwayEngraved BT");
-	nameFont->SetFont("testname");
+	nameFont->SetFont("");
 	nameFont->position = { 50, 100 };
 
 	scoreFont = new Font();
 	scoreFont->Createfont(2, 1, L"BroadwayEngraved BT");
-	scoreFont->SetFont("testscore");
+	scoreFont->SetFont("");
 	scoreFont->position = { 50, 200 };
 
 	returnFont = new Font();
 	returnFont->Createfont(2, 1, L"BroadwayEngraved BT");
-	returnFont->SetFont("testreturn");
-	returnFont->position = { 1000, 600 };
+	returnFont->SetFont("press p to return");
+	returnFont->position = { 800, 600 };
 
 	if (Director::GetInstance()->isgameend == false)
 		isentered = true;

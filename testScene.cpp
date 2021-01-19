@@ -4,6 +4,7 @@
 
 void testScene::Init()
 {
+	Director::GetInstance()->Score = 0;
 	p = new Player();
 	
 	BulletManager::GetInstance()->CreateBullet();
@@ -95,6 +96,9 @@ void testScene::Update()
 		Director::GetInstance()->ChangeScene(new menuScene);
 		return; // 씬 꼭 바꿔줄때 리턴해야함
 	}
+
+	if (DXUTWasKeyPressed(VK_F1)) // 스코어 치트키
+		Director::GetInstance()->Score += 100;
 
 	if (p->HP <= 0)
 	{
