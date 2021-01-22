@@ -75,6 +75,12 @@
     <Filter Include="Client\Objects\Item">
       <UniqueIdentifier>{f154f959-26ae-41b3-95d3-a08d0f7803aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Objects\Enemy">
+      <UniqueIdentifier>{241d8fc4-f812-44ac-9e04-f73c80c8230e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Objects\Enemy\Boss">
+      <UniqueIdentifier>{2333110d-3927-4c06-ad90-056246d61266}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -191,6 +197,12 @@
     <ClCompile Include="Item.cpp">
       <Filter>Client\Objects\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Client\Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>Client\Objects\Enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Director.h">
@@ -246,6 +258,12 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Client\Objects\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Client\Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>Client\Objects\Enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

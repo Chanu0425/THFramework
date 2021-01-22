@@ -386,6 +386,14 @@ enum class GunType
     Rifle
 };
 
+enum class EnemyType
+{
+    Enemy1,
+    Enemy2,
+    Enemy3,
+    EnemyNone
+};
+
 struct Rank
 {
     char name[4];

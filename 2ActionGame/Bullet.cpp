@@ -3,10 +3,12 @@
 
 Bullet::Bullet()
 {
-	SetTexture(L"bullet.png");
+	objectsprite->SetTexture(L"bullet.png");
 	position = { 9999,9999 };
+	scale = { 0.3f,0.3f };
 	hp = 1;
 	maxhp = 1;
+	movespeed = 800;
 }
 
 Bullet::~Bullet()
@@ -19,6 +21,8 @@ void Bullet::IDLE()
 
 void Bullet::HIT()
 {
+	if (hp <= 0)
+		state = BaseState::DIE;
 }
 
 void Bullet::DIE()
@@ -44,6 +48,7 @@ void BulletManager::CreateBullet()
 	{
 		Bullet* b = new Bullet();
 		b->isactive = false;
+		b->objectsprite->isactive = false;
 		bullets.emplace_back(b);
 	}
 }
@@ -56,10 +61,12 @@ void BulletManager::SpawnBullet(Vec2 pos, Vec2 dir)
 		{
 			bullets[i]->position = pos;
 			bullets[i]->isactive = true;
+			bullets[i]->objectsprite->isactive = true;
 			bullets[i]->hp = bullets[i]->maxhp;
 			bullets[i]->state = BaseState::IDLE;
+			bullets[i]->alivetime = 3.f;
 			bullets[i]->dir = dir;
-			bullets[i]->rotation = atan2(dir.y, dir.x);
+			bullets[i]->objectsprite->rotation = atan2(dir.y, dir.x);
 			return;
 		}
 	}

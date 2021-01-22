@@ -21,7 +21,7 @@ void Item::Update()
 			PlayerManager::GetInstance()->p->hp++;
 				break;
 		case ItemType::BulletItem:
-			PlayerManager::GetInstance()->p->bulletleft += 30;
+			PlayerManager::GetInstance()->p->gun->bulletleft += 30;
 			break;
 		}
 		isactive = false;

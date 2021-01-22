@@ -7,9 +7,15 @@ public:
     Base();
     virtual ~Base();
 
+    Sprite* objectsprite = nullptr;
+
+    EnemyType enemytype;
+
     BaseState state;
 
     wstring hitfacepath;
+
+    int damage = 1;
 
     int hp = 5;
     int maxhp = 5;

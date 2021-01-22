@@ -6,7 +6,7 @@ class Bullet :
 {
 public:
     Vec2 dir = { 0,0 };
-    float alivetime = 1.f;
+    float alivetime = 3.f;
 
     Bullet();
     virtual ~Bullet();

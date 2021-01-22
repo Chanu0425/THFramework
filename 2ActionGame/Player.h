@@ -7,7 +7,6 @@ class Player :
 {
 public:
     Gun* gun = nullptr;
-    int bulletleft = 0;
 
     Player();
     virtual ~Player();
