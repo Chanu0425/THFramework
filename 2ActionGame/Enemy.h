@@ -1,11 +1,14 @@
 #pragma once
 #include "Player.h"
 #include "Item.h"
+#include "Font.h"
 #include "Base.h"
 class Enemy :
     public Base
 {
 public:
+    Font* font = nullptr;
+
     float originscale = 1.5f;
 
     Enemy();

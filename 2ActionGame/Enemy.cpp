@@ -8,6 +8,10 @@ Enemy::Enemy()
 	objectsprite->SetTexture(L"m3idle.png");
 	objectsprite->scale = { originscale, originscale };
 	movespeed = 30;
+	font = new Font();
+	font->Createfont(2, 2, L"Arial");
+	font->SetFont((char*)to_string(hp).c_str());
+	font->color = Color(0, 0, 0, 1);
 }
 
 Enemy::~Enemy()
@@ -62,17 +66,21 @@ void Enemy::DIE()
 		int ran2 = rand() % 2; // 아이템 개수
 		ItemManager::GetInstance()->SpawnItem(position, (ItemType)ran2);
 	}
+	font->isactive = false;
 }
 
 void Enemy::Move()
 {
 	Vec2 dir = PlayerManager::GetInstance()->p->position - position;
 	D3DXVec2Normalize(&dir, &dir);
-	position += dir * DELTATIME * movespeed;
+	position += dir * DELTATIME * movespeed * GLOBAL::timescale;
 }
 
 void Enemy::Update()
 {
+	font->SetFont((char*)to_string(hp).c_str());
+	font->position.x = position.x;
+	font->position.y = position.y - 30;
 	Base::Update();
 	if (PlayerManager::GetInstance()->p->position.x > position.x)
 	{
@@ -132,7 +140,7 @@ void EnemyManager::SpawnEnemy(Vec2 pos, EnemyType type, int wave)
 
 			enemys[i]->isactive = true;
 			enemys[i]->objectsprite->isactive = true;
-
+			enemys[i]->font->isactive = true;
 			return;
 		}
 	}

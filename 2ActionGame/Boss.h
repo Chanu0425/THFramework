@@ -1,4 +1,5 @@
 #pragma once
+#include "Player.h"
 #include "Base.h"
 class Boss :
     public Base

@@ -81,6 +81,12 @@
     <Filter Include="Client\Objects\Enemy\Boss">
       <UniqueIdentifier>{2333110d-3927-4c06-ad90-056246d61266}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Objects\Effect">
+      <UniqueIdentifier>{5861b379-b5b5-4eef-836f-9f4e01627ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scene\menuScene">
+      <UniqueIdentifier>{9e89e0c4-c6da-4725-9cb2-4c6ff9877793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -203,6 +209,12 @@
     <ClCompile Include="Boss.cpp">
       <Filter>Client\Objects\Enemy\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Client\Objects\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="menuScene.cpp">
+      <Filter>Client\Scene\menuScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Director.h">
@@ -264,6 +276,12 @@
     </ClInclude>
     <ClInclude Include="Boss.h">
       <Filter>Client\Objects\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Client\Objects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="menuScene.h">
+      <Filter>Client\Scene\menuScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

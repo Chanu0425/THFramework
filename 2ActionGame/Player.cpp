@@ -1,11 +1,14 @@
 #include "DXUT.h"
+#include "Effect.h"
 #include "Player.h"
 
 Player::Player()
 {
 	position = { ScreenW / 2, ScreenH / 2 };
+	objectsprite->layer = 5;
 	objectsprite->SetTexture(L"playeridle.png");
 	objectsprite->scale = { 1.5f,1.5f };
+	isPlayer = true;
 	gun = new Gun();
 }
 
@@ -21,12 +24,14 @@ void Player::IDLE()
 
 void Player::HIT()
 {
+	Camera::GetInstance()->shaketime = 0.05f;
 	if (objectsprite->texture->tag != L"playerhit.png")
 		objectsprite->SetTexture(L"playerhit.png");
 }
 
 void Player::DIE()
 {
+
 }
 
 void Player::Move()
@@ -45,6 +50,39 @@ void Player::Update()
 {
 	Base::Update();
 
+	dashcooltime -= DELTATIME;
+	dashcurrenttime -= DELTATIME;
+
+	timeslowcooltime -= DELTATIME;
+	timeslowcurrenttime -= DELTATIME;
+
+	if (dashcurrenttime > 0)
+	{
+		movespeed = 600;
+		EffectManager::GetInstance()->SpawnEffect(position, EffectType::Player);
+	}
+	else
+		movespeed = 300;
+
+	if (DXUTWasKeyPressed('Q') && dashcooltime <= 0)
+	{
+		dashcooltime = 1.f;
+		dashcurrenttime = 0.2f;
+	}
+
+	if (timeslowcurrenttime > 0)
+	{
+		GLOBAL::timescale = 0.2f;
+	}
+	else
+		GLOBAL::timescale = 1;
+
+	if (DXUTWasKeyPressed('E') && timeslowcooltime <= 0)
+	{
+		timeslowcooltime = 1.f;
+		timeslowcurrenttime = 0.5f;
+	}
+	
 	if (DXUTWasKeyPressed('1'))
 		gun->SetGunType(GunType::Pistol);
 	if (DXUTWasKeyPressed('2'))

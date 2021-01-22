@@ -7,7 +7,7 @@
 #include "resource.h"
 #include "Renderer.h"
 #include "Director.h"
-#include "gameScene.h"
+#include "menuScene.h"
 
 //--------------------------------------------------------------------------------------
 // Create any D3D9 resources that will live through a device reset (D3DPOOL_MANAGED)
@@ -120,7 +120,7 @@ int main(void)
     DXUTCreateWindow( L"EmptyProject" );
     DXUTCreateDevice( true, ScreenW, ScreenH );
 
-    Director::GetInstance()->ChangeScene(new gameScene);
+    Director::GetInstance()->ChangeScene(new menuScene);
 
     // Start the render loop
     DXUTMainLoop();

@@ -1,5 +1,7 @@
 #include "DXUT.h"
 #include "Bullet.h"
+#include "Enemy.h"
+#include "Effect.h"
 #include "Base.h"
 
 Base::Base()
@@ -41,7 +43,31 @@ void Base::Update()
 					{
 						GetDamage(BulletManager::GetInstance()->bullets[i]->damage);
 						BulletManager::GetInstance()->bullets[i]->GetDamage(damage);
+						EffectManager::GetInstance()->SpawnEffectFont(
+							BulletManager::GetInstance()->bullets[i]->position,
+							BulletManager::GetInstance()->bullets[i]->damage
+						);
 						invincibletime = 0.1f;
+					}
+				}
+			}
+		}
+	}
+
+	if (isPlayer == true)
+	{
+		if (invincibletime <= 0)
+		{
+			for (int i = 0; i < EnemyManager::GetInstance()->enemys.size(); ++i)
+			{
+				if (EnemyManager::GetInstance()->enemys[i]->isactive == true)
+				{
+					RECT r;
+					if (IntersectRect(&r, &EnemyManager::GetInstance()->enemys[i]->GetRect(),
+						&GetRect()))
+					{
+						GetDamage(EnemyManager::GetInstance()->enemys[i]->damage);
+						invincibletime = 1.f;
 					}
 				}
 			}

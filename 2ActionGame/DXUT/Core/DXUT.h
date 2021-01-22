@@ -391,7 +391,14 @@ enum class EnemyType
     Enemy1,
     Enemy2,
     Enemy3,
+    EnemyBoss,
     EnemyNone
+};
+
+enum class EffectType
+{
+    Player,
+    Bomb
 };
 
 struct Rank

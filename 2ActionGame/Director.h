@@ -9,7 +9,8 @@ private:
 	Scene* currentScene; // 현재 다이렉트x에서 돌아가는 씬
 public:
 	POINT p;
-	int Score = 110;
+	float timescale = 1;
+	int Score = 0;
 	int mouse = 0;
 	bool OnMouseDown()
 	{

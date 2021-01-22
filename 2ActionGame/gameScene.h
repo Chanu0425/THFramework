@@ -4,6 +4,8 @@
 #include "Bullet.h"
 #include "Item.h"
 #include "Enemy.h"
+#include "Boss.h"
+#include "Effect.h"
 #include "Scene.h"
 class gameScene :
     public Scene

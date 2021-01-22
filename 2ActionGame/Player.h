@@ -1,12 +1,19 @@
 #pragma once
 #include "Gun.h"
 #include "Base.h"
+#include "Camera.h"
 #include "Singleton.h"
 class Player :
     public Base
 {
 public:
     Gun* gun = nullptr;
+
+    float dashcooltime = 0;
+    float dashcurrenttime = 0;
+
+    float timeslowcooltime = 0;
+    float timeslowcurrenttime = 0;
 
     Player();
     virtual ~Player();

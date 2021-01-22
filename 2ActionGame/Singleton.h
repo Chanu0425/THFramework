@@ -15,3 +15,9 @@ public:
 };
 
 template<class T> T* Singleton<T>::instance = nullptr;
+
+class GLOBAL
+{
+public:
+	static float timescale;
+};

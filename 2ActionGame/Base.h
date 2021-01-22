@@ -7,6 +7,8 @@ public:
     Base();
     virtual ~Base();
 
+    bool isPlayer = false;
+
     Sprite* objectsprite = nullptr;
 
     EnemyType enemytype;

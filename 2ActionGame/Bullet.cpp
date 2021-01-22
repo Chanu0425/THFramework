@@ -31,7 +31,7 @@ void Bullet::DIE()
 
 void Bullet::Move()
 {
-	position += -dir * movespeed * DELTATIME;
+	position += -dir * movespeed * DELTATIME * GLOBAL::timescale;
 }
 
 void Bullet::Update()
