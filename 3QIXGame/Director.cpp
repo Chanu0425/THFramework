@@ -10,21 +10,21 @@ void Director::Init()
 
 void Director::AddScene(SceneTag _sceneTag, Scene* _scene)
 {
+	auto iter = sceneMap.find(_sceneTag);
+	if (iter == sceneMap.end())
+	{
+		sceneMap[_sceneTag] = _scene;
+	}
 }
 
 void Director::ChangeScene(SceneTag _sceneTag)
 {
-}
-
-void Director::ChangeScene(Scene* _scene)
-{
 	if (currentScene != nullptr)
 	{
 		currentScene->Exit();
-		delete currentScene;
 	}
 	Renderer::GetInstance()->Clear();
-	currentScene = _scene;
+	currentScene = sceneMap[_sceneTag];
 	currentScene->Init();
 }
 
@@ -40,4 +40,13 @@ void Director::UpdateScene()
 		mouse = 2;
 	if (mouse == 3)
 		mouse = 0;
+}
+
+void Director::ReleaseAllScenes()
+{
+	currentScene->Exit();
+	for (auto it : sceneMap)
+	{
+		delete it.second;
+	}
 }

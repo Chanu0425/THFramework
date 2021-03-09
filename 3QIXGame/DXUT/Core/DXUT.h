@@ -375,3 +375,11 @@ enum SceneTag
 };
 /// ENGINE
 /// CLIENT
+enum PIXELSTATE
+{
+    NONE,
+    WALL,
+    PATH,
+    CLEARED
+};
+/// CLIENT

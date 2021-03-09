@@ -167,6 +167,9 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Client\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Client\Objects\Board</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Director.h">
@@ -210,6 +213,9 @@
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Client\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Client\Objects\Board</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -52,7 +52,7 @@ void CALLBACK OnD3D9FrameRender( IDirect3DDevice9* pd3dDevice, double fTime, flo
     HRESULT hr;
 
     // Clear the render target and the zbuffer 
-    V( pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB( 0, 189, 236, 182 ), 1.0f, 0 ) );
+    V( pd3dDevice->Clear( 0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB( 0, 0, 0, 0 ), 1.0f, 0 ) );
 
     // Render the scene
     if( SUCCEEDED( pd3dDevice->BeginScene() ) )
@@ -89,6 +89,7 @@ void CALLBACK OnMouse(bool bLeftButtonDown, bool bRightButtonDown, bool bMiddleB
 //--------------------------------------------------------------------------------------
 void CALLBACK OnD3D9DestroyDevice( void* pUserContext )
 {
+    Director::GetInstance()->ReleaseAllScenes();
     Director::GetInstance()->DeleteInstance();
     Renderer::GetInstance()->DeleteInstance();
     Camera::GetInstance()->DeleteInstance();
@@ -107,7 +108,7 @@ int main(void)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
 
-    _CrtSetBreakAlloc(284);
+    //_CrtSetBreakAlloc(284);
     // Set the callback functions
     DXUTSetCallbackD3D9DeviceCreated( OnD3D9CreateDevice );
     DXUTSetCallbackD3D9DeviceReset( OnD3D9ResetDevice );
@@ -126,7 +127,8 @@ int main(void)
     DXUTCreateWindow( L"EmptyProject" );
     DXUTCreateDevice( true, ScreenW, ScreenH );
 
-    Director::GetInstance()->ChangeScene(new GameScene);
+    Director::GetInstance()->AddScene(SceneTag::GAMESCENE, new GameScene);
+    Director::GetInstance()->ChangeScene(SceneTag::GAMESCENE);
 
     // Start the render loop
     DXUTMainLoop();

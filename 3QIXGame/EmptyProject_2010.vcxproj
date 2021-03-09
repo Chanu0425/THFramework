@@ -384,6 +384,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="DXUT\Optional\SDKsound.cpp" />
@@ -398,6 +399,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="DXUT\Optional\SDKsound.h" />

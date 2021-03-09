@@ -50,4 +50,6 @@ public:
 	void AddScene(SceneTag _sceneTag, Scene* _scene);
 	void ChangeScene(SceneTag _sceneTag);
 	void UpdateScene();
+
+	void ReleaseAllScenes();
 };
