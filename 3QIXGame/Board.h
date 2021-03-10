@@ -6,8 +6,11 @@ class Board :
 {
 private:
     bool checkedPixels[50][50];
-    int CheckBoard(int _posX, int _posY);
     bool showplayerpos = true;
+    PIXELDIRECTION direction;
+    list<Pixel*> paths;
+
+    int CheckBoard(int _posX, int _posY);
 protected:
 public:
     int pathStartposX = 0;

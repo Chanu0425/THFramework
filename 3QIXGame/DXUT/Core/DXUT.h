@@ -382,4 +382,10 @@ enum PIXELSTATE
     PATH,
     CLEARED
 };
+
+enum PIXELDIRECTION
+{
+    UPDOWN,
+    LEFTRIGHT
+};
 /// CLIENT

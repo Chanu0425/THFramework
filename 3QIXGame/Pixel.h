@@ -6,6 +6,9 @@ class Pixel :
 private:
 protected:
 public:
+    int indexX = 0;
+    int indexY = 0;
+    PIXELDIRECTION direction;
     PIXELSTATE state;
     Pixel(void);
     virtual ~Pixel(void);

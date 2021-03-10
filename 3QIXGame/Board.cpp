@@ -4,9 +4,14 @@
 int Board::CheckBoard(int _posX, int _posY)
 {
 	int score = 0;
+	if (checkedPixels[_posX][_posY] == true)
+		return score;
+	
+	checkedPixels[_posX][_posY] = true;
+
 	if ((pixels[_posX][_posY]->state == CLEARED) || (pixels[_posX][_posY]->state == WALL) || (pixels[_posX][_posY]->state == PATH))
 	{
-		checkedPixels[_posX][_posY] = true;
+		++score;
 	}
 
 	score += CheckBoard(_posX + 1, _posY);
@@ -24,6 +29,8 @@ Board::Board(void)
 		for (int j = 0; j < 50; ++j)
 		{
 			pixels[i][j] = new Pixel();
+			pixels[i][j]->indexX = i;
+			pixels[i][j]->indexY = j;
 			pixels[i][j]->position =
 			{ 300 + ((float)i * 13),
 			  20 + ((float)j * 13) };
@@ -60,6 +67,7 @@ void Board::Update(void)
 	{
 		backposX = playerX;
 		backposY = playerY;
+		direction = UPDOWN;
 		playerY -= 1;
 		if (playerY < 0)
 			playerY = 0;
@@ -68,6 +76,7 @@ void Board::Update(void)
 	{
 		backposX = playerX;
 		backposY = playerY;
+		direction = UPDOWN;
 		playerY += 1;
 		if (playerY > 49)
 			playerY = 49;
@@ -76,6 +85,7 @@ void Board::Update(void)
 	{
 		backposX = playerX;
 		backposY = playerY;
+		direction = LEFTRIGHT;
 		playerX -= 1;
 		if (playerX < 0)
 			playerX = 0;
@@ -84,6 +94,7 @@ void Board::Update(void)
 	{
 		backposX = playerX;
 		backposY = playerY;
+		direction = LEFTRIGHT;
 		playerX += 1;
 		if (playerX > 49)
 			playerX = 49;
@@ -99,32 +110,61 @@ void Board::Update(void)
 	if (isCutting == true)
 	{
 		if (pixels[backposX][backposY]->state == NONE)
+		{
 			pixels[backposX][backposY]->state = PATH;
+			pixels[backposX][backposY]->direction = direction;
+			paths.emplace_back(pixels[backposX][backposY]);
+		}
 
 		if (pixels[playerX][playerY]->state == PATH)
 		{
 			playerX = pathStartposX;
 			playerY = pathStartposY;
 			isCutting = false;
-			
+
 			// PATH 초기화
-			for (int i = 0; i < 50; ++i)
+			for (auto& it : paths)
 			{
-				for (int j = 0; j < 50; ++j)
-				{
-					if (pixels[i][j]->state == PATH)
-					{
-						pixels[i][j]->state = NONE;
-					}
-				}
+				it->state = NONE;
 			}
+
+			paths.clear();
 		}
 
-		if ((pixels[playerX][playerY]->state == WALL) || (pixels[playerX][playerY]->state == CLEARED))
+
+	}
+
+	if (isCutting == true && (pixels[playerX][playerY]->state == WALL) || (pixels[playerX][playerY]->state == CLEARED))
+	{
+		isCutting = false;
+		for (auto& it : paths)
 		{
-			isCutting = false;
-			// 임의의 path 하나 설정해서
-			// 위 아래 탐색 -> flood fill
+			bool check = false;
+			if (it->direction == UPDOWN)
+			{
+				// 양옆이 비어있으면 이 픽셀을 중심으로 탐색
+				if ((pixels[it->indexX + 1][it->indexY]->state == NONE) &&
+					(pixels[it->indexX - 1][it->indexY]->state == NONE))
+				{
+					check = true;
+				}
+			}
+			else
+			{
+				// 위아래가 비어있으면 이 픽셀을 중심으로 탐색
+				if ((pixels[it->indexX][it->indexY + 1]->state == NONE) &&
+					(pixels[it->indexX][it->indexY - 1]->state == NONE))
+				{
+					check = true;
+				}
+			}
+
+			if (check == true)
+			{
+				// 임의의 path 하나 설정해서
+				// 위 아래 탐색 -> flood fill
+				break;
+			}
 		}
 	}
 
@@ -155,8 +195,20 @@ void Board::Update(void)
 	if (showplayerpos == true)
 		pixels[playerX][playerY]->color = D3DCOLOR_RGBA(100, 100, 100, 255);
 
+	for (auto& it : paths)
+	{
+		if (it->direction == UPDOWN)
+		{
+			it->color = D3DCOLOR_RGBA(0, 0, 255, 255);
+		}
+		else
+		{
+			it->color = D3DCOLOR_RGBA(200, 200, 0, 255);
+		}
+	}
+
 	if (DXUTWasKeyPressed('L'))
 		showplayerpos = !showplayerpos;
 
-	cout << backposX << " " << backposY << endl;
+	//cout << backposX << " " << backposY << endl;
 }
