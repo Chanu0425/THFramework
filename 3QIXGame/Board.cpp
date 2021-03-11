@@ -1,25 +1,33 @@
 #include "DXUT.h"
 #include "Board.h"
 
-int Board::CheckBoard(int _posX, int _posY)
+void Board::CheckBoard(int _posX, int _posY, int _index)
 {
 	int score = 0;
+
 	if (checkedPixels[_posX][_posY] == true)
-		return score;
-	
+		return;
+
 	checkedPixels[_posX][_posY] = true;
 
-	if ((pixels[_posX][_posY]->state == CLEARED) || (pixels[_posX][_posY]->state == WALL) || (pixels[_posX][_posY]->state == PATH))
+	if ((pixels[_posX][_posY]->state == CLEARED) ||
+		(pixels[_posX][_posY]->state == WALL) ||
+		(pixels[_posX][_posY]->state == PATH))
 	{
-		++score;
+		return;
 	}
 
-	score += CheckBoard(_posX + 1, _posY);
-	score += CheckBoard(_posX - 1, _posY);
-	score += CheckBoard(_posX, _posY + 1);
-	score += CheckBoard(_posX, _posY - 1);
+	if (_index == 0)
+		clear1.emplace_back(pixels[_posX][_posY]);
+	else
+		clear2.emplace_back(pixels[_posX][_posY]);
 
-	return score;
+	CheckBoard(_posX + 1, _posY, _index);
+	CheckBoard(_posX - 1, _posY, _index);
+	CheckBoard(_posX, _posY + 1, _index);
+	CheckBoard(_posX, _posY - 1, _index);
+
+	return;
 }
 
 Board::Board(void)
@@ -44,6 +52,14 @@ Board::Board(void)
 		pixels[i][49]->state = WALL;
 		pixels[0][i]->state = WALL;
 		pixels[49][i]->state = WALL;
+	}
+
+	for (int i = 0; i < 50; ++i)
+	{
+		for (int j = 0; j < 50; ++j)
+		{
+			checkedPixels[i][j] = false;
+		}
 	}
 
 	layer = -1;
@@ -161,11 +177,51 @@ void Board::Update(void)
 
 			if (check == true)
 			{
-				// 임의의 path 하나 설정해서
-				// 위 아래 탐색 -> flood fill
+				if (it->direction == UPDOWN)
+				{
+					CheckBoard(it->indexX + 1, it->indexY, 0);
+					CheckBoard(it->indexX - 1, it->indexY, 1);
+				}
+				else
+				{
+					CheckBoard(it->indexX, it->indexY + 1, 0);
+					CheckBoard(it->indexX, it->indexY - 1, 1);
+				}
+
+				if (clear1.size() > clear2.size())
+				{
+					for (auto& it : clear2)
+					{
+						it->state = CLEARED;
+					}
+				}
+				else
+				{
+					for (auto& it : clear1)
+					{
+						it->state = CLEARED;
+					}
+				}
+				
+				clear1.clear();
+				clear2.clear();
+
+				for (int i = 0; i < 50; ++i)
+				{
+					for (int j = 0; j < 50; ++j)
+					{
+						checkedPixels[i][j] = false;
+					}
+				}
 				break;
 			}
 		}
+
+		for (auto& it : paths)
+		{
+			it->state = CLEARED;
+		}
+		paths.clear();
 	}
 
 	for (int i = 0; i < 50; ++i)
@@ -210,5 +266,5 @@ void Board::Update(void)
 	if (DXUTWasKeyPressed('L'))
 		showplayerpos = !showplayerpos;
 
-	//cout << backposX << " " << backposY << endl;
+	isCutting == true ? cout << "YES" << endl : cout << "NO" << endl;
 }

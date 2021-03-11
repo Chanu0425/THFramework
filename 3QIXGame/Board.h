@@ -9,8 +9,10 @@ private:
     bool showplayerpos = true;
     PIXELDIRECTION direction;
     list<Pixel*> paths;
-
-    int CheckBoard(int _posX, int _posY);
+    list<Pixel*> clear1;
+    list<Pixel*> clear2;
+    list<int> testlist;
+    void CheckBoard(int _posX, int _posY, int _index);
 protected:
 public:
     int pathStartposX = 0;
