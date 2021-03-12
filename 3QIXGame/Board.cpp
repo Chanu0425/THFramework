@@ -213,7 +213,6 @@ void Board::Update(void)
 						checkedPixels[i][j] = false;
 					}
 				}
-				break;
 			}
 		}
 
