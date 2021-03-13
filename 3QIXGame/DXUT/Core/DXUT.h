@@ -374,7 +374,12 @@ enum SceneTag
     GAMESCENE
 };
 /// ENGINE
-/// CLIENT
+/// CLIENT 
+enum IMAGETAG
+{
+    ORGAN // per 1 pixel
+};
+
 enum PIXELSTATE
 {
     NONE,
