@@ -3,8 +3,6 @@
 
 void Board::CheckBoard(int _posX, int _posY, int _index)
 {
-	int score = 0;
-
 	if (checkedPixels[_posX][_posY] == true)
 		return;
 
@@ -62,8 +60,8 @@ Board::Board(void)
 		}
 	}
 
-	layer = -1;
-	SetTexture(L"Pixel.png");
+	layer = -1; // 신경쓰지말기
+	SetTexture(L"Pixel.png"); // 신경쓰지말기 아직까진
 }
 
 Board::~Board(void)
@@ -118,6 +116,7 @@ void Board::Update(void)
 
 	if (isCutting == false && pixels[playerX][playerY]->state == NONE)
 	{
+		// 자르기 시작했다!
 		isCutting = true;
 		pathStartposX = backposX;
 		pathStartposY = backposY;
@@ -188,8 +187,9 @@ void Board::Update(void)
 					CheckBoard(it->indexX, it->indexY - 1, 1);
 				}
 
-				if (clear1.size() > clear2.size())
+				if (clear1.size() > clear2.size()) // 더 작은거 채우기!!
 				{
+					// 점수 Cleared된 pixel들의 갯수
 					for (auto& it : clear2)
 					{
 						it->state = CLEARED;
@@ -197,6 +197,7 @@ void Board::Update(void)
 				}
 				else
 				{
+					// 점수 Cleared된 pixel들의 갯수
 					for (auto& it : clear1)
 					{
 						it->state = CLEARED;
@@ -216,6 +217,7 @@ void Board::Update(void)
 			}
 		}
 
+		// 점수 Cleared된 pixel들의 갯수
 		for (auto& it : paths)
 		{
 			it->state = CLEARED;
@@ -261,6 +263,8 @@ void Board::Update(void)
 			it->color = D3DCOLOR_RGBA(200, 200, 0, 255);
 		}
 	}
+
+	//for 2 -> CLEARED / 80%
 
 	if (DXUTWasKeyPressed('L'))
 		showplayerpos = !showplayerpos;
