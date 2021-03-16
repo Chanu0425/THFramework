@@ -12,6 +12,9 @@ private:
     list<Pixel*> clear1;
     list<Pixel*> clear2;
     void CheckBoard(int _posX, int _posY, int _index);
+    void SpawnObsticle(int _posX, int _posY);
+
+
 protected:
 public:
     int pathStartposX = 0;

@@ -10,7 +10,8 @@ void Board::CheckBoard(int _posX, int _posY, int _index)
 
 	if ((pixels[_posX][_posY]->state == CLEARED) ||
 		(pixels[_posX][_posY]->state == WALL) ||
-		(pixels[_posX][_posY]->state == PATH))
+		(pixels[_posX][_posY]->state == PATH) ||
+		(pixels[_posX][_posY]->state == OBSTICLE))
 	{
 		return;
 	}
@@ -26,6 +27,13 @@ void Board::CheckBoard(int _posX, int _posY, int _index)
 	CheckBoard(_posX, _posY - 1, _index);
 
 	return;
+}
+
+void Board::SpawnObsticle(int _posX, int _posY)
+{
+	pixels[_posX][_posY]->state = OBSTICLE;
+	// 4개 시작
+
 }
 
 Board::Board(void)
@@ -59,6 +67,17 @@ Board::Board(void)
 			checkedPixels[i][j] = false;
 		}
 	}
+	
+	SpawnObsticle(10, 10);
+	SpawnObsticle(10, 11);
+	SpawnObsticle(11, 10);
+	SpawnObsticle(11, 11);
+
+	SpawnObsticle(30, 20);
+	SpawnObsticle(31, 20);
+	SpawnObsticle(30, 21);
+	SpawnObsticle(31, 21);
+
 
 	layer = -1; // 신경쓰지말기
 	SetTexture(L"Pixel.png"); // 신경쓰지말기 아직까진
@@ -131,7 +150,7 @@ void Board::Update(void)
 			paths.emplace_back(pixels[backposX][backposY]);
 		}
 
-		if (pixels[playerX][playerY]->state == PATH)
+		if (pixels[playerX][playerY]->state == PATH || pixels[playerX][playerY]->state == OBSTICLE)
 		{
 			playerX = pathStartposX;
 			playerY = pathStartposY;
@@ -236,6 +255,9 @@ void Board::Update(void)
 				break;
 			case WALL:
 				pixels[i][j]->color = D3DCOLOR_RGBA(255, 0, 0, 255);
+				break;
+			case OBSTICLE:
+				pixels[i][j]->color = D3DCOLOR_RGBA(255, 0, 255, 255);
 				break;
 			case PATH:
 				pixels[i][j]->color = D3DCOLOR_RGBA(0, 255, 0, 255);

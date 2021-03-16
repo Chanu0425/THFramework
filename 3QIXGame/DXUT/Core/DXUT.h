@@ -384,6 +384,7 @@ enum PIXELSTATE
 {
     NONE,
     WALL,
+    OBSTICLE,
     PATH,
     CLEARED
 };
