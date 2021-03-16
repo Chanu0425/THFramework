@@ -14,6 +14,7 @@ private:
     void CheckBoard(int _posX, int _posY, int _index);
     void SpawnObsticle(int _posX, int _posY);
 
+    int score = 0;
 
 protected:
 public:

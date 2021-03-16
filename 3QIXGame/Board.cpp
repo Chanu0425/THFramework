@@ -164,8 +164,12 @@ void Board::Update(void)
 
 			paths.clear();
 		}
+	}
 
-
+	if (pixels[playerX][playerY]->state == OBSTICLE) 
+	{
+		playerX = backposX;
+		playerY = backposY;
 	}
 
 	if (isCutting == true && (pixels[playerX][playerY]->state == WALL) || (pixels[playerX][playerY]->state == CLEARED))
@@ -209,6 +213,7 @@ void Board::Update(void)
 				if (clear1.size() > clear2.size()) // 더 작은거 채우기!!
 				{
 					// 점수 Cleared된 pixel들의 갯수
+					score += clear2.size();
 					for (auto& it : clear2)
 					{
 						it->state = CLEARED;
@@ -217,6 +222,7 @@ void Board::Update(void)
 				else
 				{
 					// 점수 Cleared된 pixel들의 갯수
+					score += clear1.size();
 					for (auto& it : clear1)
 					{
 						it->state = CLEARED;
@@ -237,6 +243,7 @@ void Board::Update(void)
 		}
 
 		// 점수 Cleared된 pixel들의 갯수
+		score += paths.size();
 		for (auto& it : paths)
 		{
 			it->state = CLEARED;
@@ -291,5 +298,9 @@ void Board::Update(void)
 	if (DXUTWasKeyPressed('L'))
 		showplayerpos = !showplayerpos;
 
-	isCutting == true ? cout << "YES" << endl : cout << "NO" << endl;
+	//isCutting == true ? cout << "YES" << endl : cout << "NO" << endl;
+	if (score >= 2000)
+	{
+		std::cout << "CLEAR" << std::endl;
+	}
 }

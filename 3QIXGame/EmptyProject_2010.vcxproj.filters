@@ -63,6 +63,9 @@
     <Filter Include="Client\Objects\Pixel">
       <UniqueIdentifier>{96548b98-0967-45bb-b39f-8bfc97d17a17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Objects\VIM">
+      <UniqueIdentifier>{fff417cb-a38c-461c-81e3-1df8212fc999}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -170,6 +173,9 @@
     <ClCompile Include="Board.cpp">
       <Filter>Client\Objects\Board</Filter>
     </ClCompile>
+    <ClCompile Include="VIM.cpp">
+      <Filter>Client\Objects\VIM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Director.h">
@@ -216,6 +222,9 @@
     </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Client\Objects\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="VIM.h">
+      <Filter>Client\Objects\VIM</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
