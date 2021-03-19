@@ -293,13 +293,11 @@ void Board::Update(void)
 		}
 	}
 
-	//for 2 -> CLEARED / 80%
-
 	if (DXUTWasKeyPressed('L'))
 		showplayerpos = !showplayerpos;
 
 	//isCutting == true ? cout << "YES" << endl : cout << "NO" << endl;
-	if (score >= 2000)
+	if (score >= 2000) //벽은 2500개의 픽셀들 속에서 500개 미만이어야함.
 	{
 		std::cout << "CLEAR" << std::endl;
 	}
