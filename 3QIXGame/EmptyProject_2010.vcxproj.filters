@@ -66,6 +66,27 @@
     <Filter Include="Client\Objects\VIM">
       <UniqueIdentifier>{fff417cb-a38c-461c-81e3-1df8212fc999}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client\Objects\Items">
+      <UniqueIdentifier>{3836332b-34d7-40a2-a6a9-c304ddd0833e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scenes\GameScene">
+      <UniqueIdentifier>{0fa0b08d-3636-4a47-921f-f7da2b5ccb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scenes\MenuScene">
+      <UniqueIdentifier>{42dda0d6-f666-4151-b18e-c4f6ec0c4a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scenes\RankingScene">
+      <UniqueIdentifier>{12a46cbc-2208-4cdf-9e28-9ab7ea8059d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scenes\IntroScene">
+      <UniqueIdentifier>{cf7c54b1-3769-4b71-86ba-e8c39e6a8660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Scenes\CreditScene">
+      <UniqueIdentifier>{4c79c394-f62d-4051-94e7-175cd284747f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Client\Objects\Virus">
+      <UniqueIdentifier>{c9e31e8c-59b5-4495-9ef4-719b49e60750}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -167,14 +188,23 @@
     <ClCompile Include="Pixel.cpp">
       <Filter>Client\Objects\Pixel</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Client\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Board.cpp">
       <Filter>Client\Objects\Board</Filter>
     </ClCompile>
     <ClCompile Include="VIM.cpp">
       <Filter>Client\Objects\VIM</Filter>
+    </ClCompile>
+    <ClCompile Include="Items.cpp">
+      <Filter>Client\Objects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Client\Scenes\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>Client\Scenes\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Virus.cpp">
+      <Filter>Client\Objects\Virus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,14 +247,23 @@
     <ClInclude Include="Pixel.h">
       <Filter>Client\Objects\Pixel</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Client\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Client\Objects\Board</Filter>
     </ClInclude>
     <ClInclude Include="VIM.h">
       <Filter>Client\Objects\VIM</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Client\Objects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Client\Scenes\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>Client\Scenes\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Virus.h">
+      <Filter>Client\Objects\Virus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,10 @@
 #include "resource.h"
 #include "Renderer.h"
 #include "Director.h"
+#include "MenuScene.h"
 #include "GameScene.h"
 #include "Renderer.h"
+#include "Items.h"
 #include "Camera.h"
 
 //--------------------------------------------------------------------------------------
@@ -90,9 +92,13 @@ void CALLBACK OnMouse(bool bLeftButtonDown, bool bRightButtonDown, bool bMiddleB
 void CALLBACK OnD3D9DestroyDevice( void* pUserContext )
 {
     Director::GetInstance()->ReleaseAllScenes();
-    Director::GetInstance()->DeleteInstance();
-    Renderer::GetInstance()->DeleteInstance();
-    Camera::GetInstance()->DeleteInstance();
+    Director::DeleteInstance();
+    Renderer::DeleteInstance();
+    Camera::DeleteInstance();
+    TextureManager::GetInstance()->ReleaseAllTexture();
+    TextureManager::DeleteInstance();
+    ItemManager::GetInstance()->DeleteItem();
+    ItemManager::DeleteInstance();
     exit(1);
 }
 
@@ -108,7 +114,7 @@ int main(void)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
 
-    //_CrtSetBreakAlloc(284);
+    //_CrtSetBreakAlloc(159);
     // Set the callback functions
     DXUTSetCallbackD3D9DeviceCreated( OnD3D9CreateDevice );
     DXUTSetCallbackD3D9DeviceReset( OnD3D9ResetDevice );
@@ -127,8 +133,9 @@ int main(void)
     DXUTCreateWindow( L"EmptyProject" );
     DXUTCreateDevice( true, ScreenW, ScreenH );
 
+    Director::GetInstance()->AddScene(SceneTag::MENUSCENE, new MenuScene);
     Director::GetInstance()->AddScene(SceneTag::GAMESCENE, new GameScene);
-    Director::GetInstance()->ChangeScene(SceneTag::GAMESCENE);
+    Director::GetInstance()->ChangeScene(SceneTag::MENUSCENE);
 
     // Start the render loop
     DXUTMainLoop();

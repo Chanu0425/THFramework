@@ -5,6 +5,13 @@ class VIM :
 {
 private:
 public:
-    int HP;
+    float movementspeed = 0.07f;
+    int HP = 5;
+    float immunetime = 0;
+    bool isimmune = false;
+
+    VIM();
+    virtual ~VIM();
+    void Update() override;
 };
 

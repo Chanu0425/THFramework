@@ -394,4 +394,29 @@ enum PIXELDIRECTION
     UPDOWN,
     LEFTRIGHT
 };
+
+enum ITEMTAG
+{
+    SPEED,
+    BARRIER,
+    IMMUNE,
+    HEAL,
+    RANDOM
+};
+
+enum OBSTICLETAG
+{
+    OBRECT,
+    OBT,
+    OBI
+};
+
+enum VIRUSTAG
+{
+    SPEEDVIRUS,
+    BIGVIRUS,
+    FLASHVIRUS,
+    TOXINO
+};
+
 /// CLIENT

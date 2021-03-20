@@ -47,3 +47,13 @@ Texture* TextureManager::LoadTexture(wstring path)
 		return tex;
 	}
 }
+
+void TextureManager::ReleaseAllTexture()
+{
+	for (auto& it : texturelist)
+	{
+		it->texture->Release();
+		delete it;
+	}
+	texturelist.clear();
+}

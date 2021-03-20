@@ -16,4 +16,5 @@ private:
 	list<Texture*> texturelist;
 public:
 	Texture* LoadTexture(wstring path);
+	void ReleaseAllTexture();
 };
