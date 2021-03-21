@@ -213,7 +213,7 @@ void Board::Update(void)
 
 	if (isCutting == true)
 	{
-		CheckPathAndVirusCollision(viruspos);
+		CheckPathAndVirusCollision(viruspos); // 여기서 path 클리어부분에서 오류. 고쳐야함
 
 		if (pixels[backposX][backposY]->state == NONE)
 		{
