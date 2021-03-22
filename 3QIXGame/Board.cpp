@@ -62,14 +62,15 @@ void Board::CheckPathAndVirusCollision(std::vector<std::pair<int, int>> _viruspo
 	{
 		for (int i = 0; i < _viruspos.size(); ++i)
 		{
-			if (it->indexX == _viruspos[i].first &&
-				it->indexY == _viruspos[i].second)
+			if ((it->indexX == _viruspos[i].first &&
+				 it->indexY == _viruspos[i].second) ||
+				(playerX == _viruspos[i].first &&
+				 playerY == _viruspos[i].second))
 			{
 				playerX = pathStartposX;
 				playerY = pathStartposY;
 				--vim->HP;
 				isCutting = false;
-
 				for (auto& it : paths)
 					it->state = NONE;
 
@@ -213,7 +214,6 @@ void Board::Update(void)
 
 	if (isCutting == true)
 	{
-		CheckPathAndVirusCollision(viruspos); // 여기서 path 클리어부분에서 오류. 고쳐야함
 
 		if (pixels[backposX][backposY]->state == NONE)
 		{
@@ -221,6 +221,8 @@ void Board::Update(void)
 			pixels[backposX][backposY]->direction = direction;
 			paths.emplace_back(pixels[backposX][backposY]);
 		}
+
+		CheckPathAndVirusCollision(viruspos); // 여기서 path 클리어부분에서 오류. 고쳐야함
 
 		if (pixels[playerX][playerY]->state == PATH || pixels[playerX][playerY]->state == OBSTICLE)
 		{
@@ -437,6 +439,7 @@ void Board::Update(void)
 	}
 
 	//isCutting == true ? cout << "YES" << endl : cout << "NO" << endl;
+	std::cout << paths.size() << std::endl;
 	if (score >= 2000) //장애물은 2500개의 픽셀들 속에서 500개 미만이어야함.
 	{
 		std::cout << "CLEAR" << std::endl;
